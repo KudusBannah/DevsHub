@@ -20,7 +20,7 @@ def home(request):
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) | Q(name__icontains=q) | Q(description__icontains=q)
     )
-    
+
     topics = Topic.objects.all()
     rooms_count = Room.objects.all().count()
     q_room_count = rooms.count()
@@ -45,6 +45,7 @@ def home(request):
         'q_room_count':q_room_count,
         'empty_activity':empty_activity,
         'empty_rooms':empty_rooms,
+        'q':q,
     }
     return render(request, "base/home.html", context)
 
@@ -256,7 +257,7 @@ def profile_view(request, pk):
         form.save()
         messages.success(request, "Profile has updated successfully")
         return redirect('profile', pk=user.id)
-        
+
 
     context = {
         'topics':topics,

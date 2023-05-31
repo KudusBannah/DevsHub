@@ -95,42 +95,34 @@
 
             <!-- Reports -->
             <div class="col-12">
+                <!-- Recent Sales -->
             <div class="col-12">
-              <div class="card top-selling overflow-auto">
+              <div class="card recent-sales overflow-auto">
 
-                <div class="card-body pb-0">
-                  <h5 class="card-title">Rooms <span>| {{q_room_count}} reults</span></h5>
-
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Room creator</th>
-                        <th scope="col">Room name</th>
-                        <th scope="col">Members</th>
-                        <th scope="col">Last Active</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% if empty_rooms %}
-                      <h4>No available room</h4>
-                      {% else %}
-                      {% for room in rooms %}
-                      <tr>
-                        <th scope="row"><a href=""><img src="{{room.host.profile.profile_pic.url}}" alt="host image"></a></th>
-                        <td><a href="{% url 'room' room.id %}" class="text-primary fw-bold">{{room.name}}</a></td>
-                        <td>{{room.members.all|length}}</td>
-                        <td class="fw-bold">{{room.last_active}}</td>
-                      </tr>
-                      {% endfor %}
-                      {% endif %}
-                    </tbody>
-                  </table>
-
+                <div class="card-body">
+                  <h5 class="card-title">Chat rooms <span>| All rooms</span></h5>
+                  <div class="row">
+                    {% for room in rooms %}
+                    <div class="col col-12 col-sm-6 col-md-4">
+                      <div class="card">
+                        <img src="{{room.class_img.url}}" class="card-img-top" style="max-height:180px;" alt="...">
+                        <div class="card-body">
+                          <a href="{% url 'room' room.id %}"><h5 class="card-title">{{room.name}}</h5></a>
+                          <p class="card-text">{{room.description|truncatewords:6}}</p>
+                          <img src="{{room.host.profile.profile_pic.url}}" class="card-img-top rounded-circle" style="width:30px; height:30px" alt="...">
+                          <span>creator: <a href="{% url 'profile' room.host.id %}">@{{room.host.username}}</a></span>
+                          <div class="mt-2">
+                              <a href="{% url 'room' room.id %}" class="text-primary">View room</a>
+                          </div>
+                        </div>
+                      </div><!-- End Card with an image on top -->
+                    </div>
+                    {% endfor %}
+                  </div>
                 </div>
 
               </div>
-            </div><!-- End Top Selling -->
-              
+            </div><!-- End Recent Sales -->
             </div><!-- End Reports -->
           </div>
         </div><!-- End Left side columns -->

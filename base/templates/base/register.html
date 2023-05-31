@@ -1,13 +1,13 @@
 {% extends 'auth_base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-
 {% block title %}Register{% endblock title %}
 
 {% block css_files %}
 <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
+<link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
 {% endblock css_files %}
 
 
@@ -21,7 +21,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
+                  <img src="{% static 'img/logo.png' %}" alt=logo"">
                   <span class="d-none d-lg-block">DevsHub</span>
                 </a>
               </div><!-- End Logo -->

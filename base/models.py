@@ -30,6 +30,7 @@ class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    class_img = models.ImageField(upload_to="class_img", default="group_icon.png")
     description = models.TextField()
     members = models.ManyToManyField(User, related_name="members", blank=True)
     created = models.DateTimeField(auto_now_add=True)

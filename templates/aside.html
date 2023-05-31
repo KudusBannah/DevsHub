@@ -1,30 +1,34 @@
+  {% url 'home' as index_path %}
+  {% url 'create-room' as create_room_path %}
+  {% url 'created-rooms' as created_rooms_path %}
+
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'home' %}">
+        <a class="nav-link {% if not request.path == index_path %}collapsed{% endif %}" href="{% url 'home' %}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" href="{% url 'create-room' %}">
+        <a class="nav-link {% if not request.path == create_room_path %}collapsed{% endif %}" data-bs-target="#components-nav" href="{% url 'create-room' %}">
           <i class="bi bi-menu-button-wide"></i><span>Create Room</span>
         </a>
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" href="{% url 'created-rooms' %}">
+        <a class="nav-link {% if not request.path == created_rooms_path %}collapsed{% endif %}" data-bs-target="#components-nav" href="{% url 'created-rooms' %}">
           <i class="bi bi-menu-button-wide"></i><span>My created Room</span>
         </a>
       </li><!-- End Components Nav -->
 
-      <li class="nav-heading">Topics</li>
+      <li class="nav-heading">FILTER BY</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{% url 'home' %}">
+        <a class="nav-link {% if not q == "" %}collapsed{% endif %}" href="{% url 'home' %}">
         <i class="bi bi-people"></i>
         <span>All topics</span>
         </a>
@@ -32,13 +36,13 @@
 
       {% for topic in topics %}
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'home' %}?q={{topic.name}}">
+            <a class="nav-link {% if not topic.name == q %}collapsed{% endif %}" href="{% url 'home' %}?q={{topic.name}}">
             <i class="bi bi-people"></i>
             <span>{{topic.name}}</span>
             </a>
         </li><!-- End Profile Page Nav -->
       {% endfor %}
-      
+
       {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="{% url 'logout' %}">
